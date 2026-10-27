@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FSKTM IT Club - Homepage</title>
+  <style>
+    /* ==========================================================================
+       TASK 2: CSS FLEXBOX IMPLEMENTATION & PAGE RESET
+       ========================================================================== */
+
+    /* 
+      1. Page Reset:
+         - Universal selector (*) targets every element in the DOM.
+         - margin: 0 and padding: 0 eliminate browser-default spacing.
+         - box-sizing: border-box includes padding and border within the specified
+           width/height, preventing column overflow and unwanted horizontal scrolling.
+    */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f1f5f9;
+      color: #334155;
+      line-height: 1.6;
+    }
+
+    /* 
+      2. Main Container:
+         - display: flex with flex-direction: column arranges major sections vertically.
+         - width: 100% occupies full width of viewport.
+         - min-height: 600px ensures consistent vertical layout baseline.
+    */
+    .container {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      min-height: 600px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 10px;
+    }
+
+    /* 
+      3. Major Regions (Vertical Stacking & Spacing):
+         - .logo, .navigation, .content, and .footer are stacked vertically.
+         - Required min-height values:
+             .logo       -> 100px (styled at 130px for visual proportion)
+             .navigation -> 50px
+             .content    -> 400px
+             .footer     -> 20px (min-height with comfortable padding)
+         - 10px top spacing added between regions using margin-top.
+    */
+    .logo {
+      min-height: 100px;
+      height: 130px;
+      background-color: #0b2545;
+      background-image: url('header.jpg');
+      background-size: cover;
+      background-position: right center;
+      background-repeat: no-repeat;
+      display: flex;
+      align-items: center;
+      padding: 0 30px;
+      border-radius: 6px;
+      color: #ffffff;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    }
+
+    .header-text {
+      background: rgba(11, 37, 69, 0.70);
+      padding: 10px 18px;
+      border-radius: 4px;
+      border-left: 4px solid #00d2d3;
+    }
+
+    .header-text h1 {
+      font-size: 1.85rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: #ffffff;
+    }
+
+    .header-text .tagline {
+      font-size: 0.95rem;
+      color: #e2e8f0;
+      margin-top: 3px;
+    }
+
+    .navigation {
+      min-height: 50px;
+      margin-top: 10px; /* 10px top spacing between regions */
+      background-color: #1a2f4c;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      border-radius: 6px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      color: #e2e8f0;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      padding: 8px 14px;
+      border-radius: 4px;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      background-color: #2b4c7e;
+      color: #ffffff;
+    }
+
+    /* 
+      4. Content Layout:
+         - display: flex with flex-direction: row positions .side-bar and .body-area side-by-side.
+         - justify-content: space-between places .side-bar (20%) at the start and .body-area (70%)
+           at the end, automatically yielding the exact 10% gap (100% - 20% - 70% = 10%).
+         - min-height: 400px satisfies required minimum content height.
+         - margin-top: 10px creates the required 10px top spacing between regions.
+    */
+    .content {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      min-height: 400px;
+      margin-top: 10px; /* 10px top spacing between regions */
+    }
+
+    /* 
+      5. Two Content Columns:
+         - .side-bar set to width: 20%
+         - .body-area set to width: 70%
+         - Contrasting background colours with readable typography and spacing.
+    */
+    .side-bar {
+      width: 20%;
+      min-height: 400px;
+      background-color: #e8f1f5;
+      border: 1px solid #d0e0eb;
+      border-radius: 6px;
+      padding: 20px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .side-bar h3 {
+      font-size: 1.1rem;
+      color: #1a2f4c;
+      margin-bottom: 8px;
+      border-bottom: 2px solid #00d2d3;
+      padding-bottom: 4px;
+    }
+
+    .side-bar p.sidebar-desc {
+      font-size: 0.85rem;
+      color: #4a5568;
+      margin-bottom: 12px;
+      line-height: 1.45;
+    }
+
+    .side-bar-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .side-bar-links a {
+      color: #1e3a8a;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
+
+    .side-bar-links a::before {
+      content: "•";
+      color: #00d2d3;
+      font-weight: bold;
+      font-size: 1.2rem;
+      margin-right: 8px;
+    }
+
+    .side-bar-links a:hover {
+      color: #0284c7;
+      transform: translateX(4px);
+    }
+
+    .sidebar-card {
+      background-color: #ffffff;
+      border-radius: 5px;
+      padding: 12px;
+      border-left: 3px solid #0284c7;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    .sidebar-card h4 {
+      font-size: 0.9rem;
+      color: #1e293b;
+      margin-bottom: 5px;
+    }
+
+    .sidebar-card p {
+      font-size: 0.8rem;
+      color: #64748b;
+      line-height: 1.4;
+    }
+
+    .body-area {
+      width: 70%;
+      min-height: 400px;
+      background-color: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 30px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: #047857;
+      background-color: #d1fae5;
+      padding: 4px 10px;
+      border-radius: 4px;
+      margin-bottom: 12px;
+    }
+
+    .body-area h2.main-title {
+      font-size: 1.7rem;
+      color: #0f172a;
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+
+    .body-area h3 {
+      font-size: 1.2rem;
+      color: #1e293b;
+      margin-top: 24px;
+      margin-bottom: 8px;
+    }
+
+    .body-area p {
+      color: #475569;
+      font-size: 0.95rem;
+      line-height: 1.65;
+      margin-bottom: 12px;
+    }
+
+    .body-area ul {
+      margin-left: 20px;
+      margin-bottom: 16px;
+      color: #475569;
+    }
+
+    .body-area ul li {
+      margin-bottom: 6px;
+      font-size: 0.95rem;
+    }
+
+    .body-area ul li strong {
+      color: #1e293b;
+    }
+
+    .body-area a.text-link {
+      color: #0284c7;
+      text-decoration: underline;
+      font-weight: 500;
+    }
+
+    .body-area a.text-link:hover {
+      color: #0369a1;
+    }
+
+    /* 
+      6. Footer Region:
+         - min-height: 20px as required
+         - margin-top: 10px creates the required 10px top spacing between regions
+         - Clean dark navy styling matching the header and navigation theme
+    */
+    .footer {
+      min-height: 20px;
+      margin-top: 10px; /* 10px top spacing between regions */
+      background-color: #132238;
+      color: #94a3b8;
+      display: flex;
+      align-items: center;
+      padding: 12px 20px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+    }
+
+    /* ==========================================================================
+       RESPONSIVE DESIGN (MEDIA QUERY) - RUBRIC P4 (5 MARKS)
+       ==========================================================================
+       Adapts the multi-column Flexbox layout to smaller viewports (max-width: 768px).
+       Content direction changes from 'row' to 'column', allowing the side-bar
+       and body-area to expand to 100% width and stack cleanly without horizontal overflow.
+    */
+    @media (max-width: 768px) {
+      .container {
+        padding: 6px;
+      }
+
+      .logo {
+        height: auto;
+        padding: 20px 15px;
+      }
+
+      .header-text h1 {
+        font-size: 1.45rem;
+      }
+
+      .header-text .tagline {
+        font-size: 0.85rem;
+      }
+
+      .navigation {
+        padding: 10px;
+        min-height: auto;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: center;
+        width: 100%;
+      }
+
+      .nav-links a {
+        font-size: 0.85rem;
+        padding: 6px 10px;
+      }
+
+      /* Stack content vertically */
+      .content {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      /* Expand both side-bar and body-area to full width */
+      .side-bar,
+      .body-area {
+        width: 100%;
+        min-height: auto;
+      }
+
+      .body-area {
+        padding: 20px 16px;
+      }
+
+      .body-area h2.main-title {
+        font-size: 1.35rem;
+      }
+
+      .footer {
+        justify-content: center;
+        text-align: center;
+        font-size: 0.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Parent Flex Container (flex-direction: column) -->
+  <div class="container">
+
+    <!-- Task 1 Region 1: logo (min-height: 100px) -->
+    <div class="logo">
+      <div class="header-text">
+        <h1>FSKTM IT Club</h1>
+        <p class="tagline">Learn. Build. Innovate. Together.</p>
+      </div>
+    </div>
+
+    <!-- Task 1 Region 2: navigation (min-height: 50px, 10px top spacing) -->
+    <div class="navigation">
+      <ul class="nav-links">
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#events">Events</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+
+    <!-- Task 1 Region 3: content (display: flex; flex-direction: row; justify-content: space-between; min-height: 400px; 10px top spacing) -->
+    <div class="content">
+
+      <!-- Nested Column 1: side-bar (width: 20%) -->
+      <div class="side-bar">
+        <div>
+          <h3>Club Corner</h3>
+          <p class="sidebar-desc">Explore activities and opportunities available to our members.</p>
+          <ul class="side-bar-links">
+            <li><a href="#events">Upcoming Events</a></li>
+            <li><a href="#resources">Learning Resources</a></li>
+            <li><a href="#join">Join the Club</a></li>
+          </ul>
+        </div>
+
+        <div class="sidebar-card">
+          <h4>Weekly Meet-Up</h4>
+          <p>Wednesday, 3:00 PM</p>
+          <p>Student Activity Room</p>
+        </div>
+      </div>
+
+      <!-- Nested Column 2: body-area (width: 70%) -->
+      <div class="body-area">
+        <span class="badge">WELCOME TO OUR COMMUNITY</span>
+        <h2 class="main-title">Discover Technology, Create Possibilities</h2>
+        <p>
+          Welcome to Campus Tech Society! We are a student-led community that brings together
+          people interested in web development, programming, design and emerging technology.
+        </p>
+
+        <h3>About Our Club</h3>
+        <p>
+          Our mission is to help students build practical skills through hands-on workshops,
+          mini projects and knowledge-sharing sessions. Everyone is welcome, including beginners.
+        </p>
+
+        <h3>Upcoming Activities</h3>
+        <ul>
+          <li><strong>HTML &amp; CSS Workshop:</strong> Create your first website.</li>
+          <li><strong>Hackathon Day:</strong> Build an idea with your team.</li>
+          <li><strong>Tech Talk:</strong> Learn from industry speakers.</li>
+        </ul>
+
+        <h3>Learning Resources</h3>
+        <p>
+          Start learning with free tutorials at 
+          <a class="text-link" href="https://www.w3schools.com" target="_blank" rel="noopener noreferrer">W3Schools</a>.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Task 1 Region 4: footer (min-height: 20px, 10px top spacing) -->
+    <div class="footer">
+      <p>&copy; 2026 FSKTM IT Club. All rights reserved.</p>
+    </div>
+
+  </div>
+
+</body>
+</html>
