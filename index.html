@@ -5,17 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FSKTM IT Club - Homepage</title>
   <style>
-    /* ==========================================================================
-       TASK 2: CSS FLEXBOX IMPLEMENTATION & PAGE RESET
-       ========================================================================== */
-
-    /* 
-      1. Page Reset:
-         - Universal selector (*) targets every element in the DOM.
-         - margin: 0 and padding: 0 eliminate browser-default spacing.
-         - box-sizing: border-box includes padding and border within the specified
-           width/height, preventing column overflow and unwanted horizontal scrolling.
-    */
     * {
       margin: 0;
       padding: 0;
@@ -29,12 +18,6 @@
       line-height: 1.6;
     }
 
-    /* 
-      2. Main Container:
-         - display: flex with flex-direction: column arranges major sections vertically.
-         - width: 100% occupies full width of viewport.
-         - min-height: 600px ensures consistent vertical layout baseline.
-    */
     .container {
       display: flex;
       flex-direction: column;
@@ -45,16 +28,6 @@
       padding: 10px;
     }
 
-    /* 
-      3. Major Regions (Vertical Stacking & Spacing):
-         - .logo, .navigation, .content, and .footer are stacked vertically.
-         - Required min-height values:
-             .logo       -> 100px (styled at 130px for visual proportion)
-             .navigation -> 50px
-             .content    -> 400px
-             .footer     -> 20px (min-height with comfortable padding)
-         - 10px top spacing added between regions using margin-top.
-    */
     .logo {
       min-height: 100px;
       height: 130px;
@@ -93,7 +66,7 @@
 
     .navigation {
       min-height: 50px;
-      margin-top: 10px; /* 10px top spacing between regions */
+      margin-top: 10px;
       background-color: #1a2f4c;
       display: flex;
       align-items: center;
@@ -124,28 +97,14 @@
       color: #ffffff;
     }
 
-    /* 
-      4. Content Layout:
-         - display: flex with flex-direction: row positions .side-bar and .body-area side-by-side.
-         - justify-content: space-between places .side-bar (20%) at the start and .body-area (70%)
-           at the end, automatically yielding the exact 10% gap (100% - 20% - 70% = 10%).
-         - min-height: 400px satisfies required minimum content height.
-         - margin-top: 10px creates the required 10px top spacing between regions.
-    */
     .content {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
       min-height: 400px;
-      margin-top: 10px; /* 10px top spacing between regions */
+      margin-top: 10px;
     }
 
-    /* 
-      5. Two Content Columns:
-         - .side-bar set to width: 20%
-         - .body-area set to width: 70%
-         - Contrasting background colours with readable typography and spacing.
-    */
     .side-bar {
       width: 20%;
       min-height: 400px;
@@ -292,15 +251,9 @@
       color: #0369a1;
     }
 
-    /* 
-      6. Footer Region:
-         - min-height: 20px as required
-         - margin-top: 10px creates the required 10px top spacing between regions
-         - Clean dark navy styling matching the header and navigation theme
-    */
     .footer {
       min-height: 20px;
-      margin-top: 10px; /* 10px top spacing between regions */
+      margin-top: 10px;
       background-color: #132238;
       color: #94a3b8;
       display: flex;
@@ -310,13 +263,6 @@
       font-size: 0.85rem;
     }
 
-    /* ==========================================================================
-       RESPONSIVE DESIGN (MEDIA QUERY) - RUBRIC P4 (5 MARKS)
-       ==========================================================================
-       Adapts the multi-column Flexbox layout to smaller viewports (max-width: 768px).
-       Content direction changes from 'row' to 'column', allowing the side-bar
-       and body-area to expand to 100% width and stack cleanly without horizontal overflow.
-    */
     @media (max-width: 768px) {
       .container {
         padding: 6px;
@@ -352,13 +298,11 @@
         padding: 6px 10px;
       }
 
-      /* Stack content vertically */
       .content {
         flex-direction: column;
         gap: 10px;
       }
 
-      /* Expand both side-bar and body-area to full width */
       .side-bar,
       .body-area {
         width: 100%;
@@ -383,10 +327,8 @@
 </head>
 <body>
 
-  <!-- Parent Flex Container (flex-direction: column) -->
   <div class="container">
 
-    <!-- Task 1 Region 1: logo (min-height: 100px) -->
     <div class="logo">
       <div class="header-text">
         <h1>FSKTM IT Club</h1>
@@ -394,7 +336,6 @@
       </div>
     </div>
 
-    <!-- Task 1 Region 2: navigation (min-height: 50px, 10px top spacing) -->
     <div class="navigation">
       <ul class="nav-links">
         <li><a href="#home" class="active">Home</a></li>
@@ -404,10 +345,8 @@
       </ul>
     </div>
 
-    <!-- Task 1 Region 3: content (display: flex; flex-direction: row; justify-content: space-between; min-height: 400px; 10px top spacing) -->
     <div class="content">
 
-      <!-- Nested Column 1: side-bar (width: 20%) -->
       <div class="side-bar">
         <div>
           <h3>Club Corner</h3>
@@ -426,7 +365,6 @@
         </div>
       </div>
 
-      <!-- Nested Column 2: body-area (width: 70%) -->
       <div class="body-area">
         <span class="badge">WELCOME TO OUR COMMUNITY</span>
         <h2 class="main-title">Discover Technology, Create Possibilities</h2>
@@ -457,7 +395,6 @@
 
     </div>
 
-    <!-- Task 1 Region 4: footer (min-height: 20px, 10px top spacing) -->
     <div class="footer">
       <p>&copy; 2026 FSKTM IT Club. All rights reserved.</p>
     </div>
